@@ -2,8 +2,9 @@ import pyperclip
 import re 
 text = pyperclip.paste()
 #Regex to find Phone and mail pattern 
-phone_regex =r"[0]+\d{3}[-]?\d{7}" #only pakistan pattern
-email_regex = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" #global mail patterns(Standard)Pattern
+phone_regex =r"[0]+\d{3}[-]?\d{7}" #only pakistan pattern(Valid of pak codes) starting with zeroes only.
+email_regex = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" #global mail patterns(Standard)Pattern 
+#it will search almost every mail address you will encounter
 #compiling phone patterns
 
 phone_pattern =re.compile(phone_regex)
