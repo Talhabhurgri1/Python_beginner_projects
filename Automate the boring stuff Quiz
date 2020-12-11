@@ -1,0 +1,69 @@
+#importing modules
+import os 
+import shelve 
+import random
+# variable capitails contains the states and their capitals for quizz
+ 
+os.chdir('D:\Python\Quizz Project')
+# step 2 i- making 35 quizz files
+         #ii- making 35 answers files as well.
+def results(capitals):
+    for q_quiz in range(35):
+        form = open('questionquiz%s.txt'%(q_quiz+1),'w')
+        form.write('Name: ')
+        form.write('Date: ')
+        form.write('Period: ')
+        answer = open('answerquiz%s.txt'%(q_quiz+1),'w')
+        answer.write((' '*20)+'State Quiz Capitals (From%s)'%(q_quiz+1))
+        answer.write('\n\n')
+        state_keys = list(capitals.keys())
+        random.shuffle(state_keys)
+        choices(capitals,state_keys,form,answer)
+#step 3 making all the choices one of them will the right answers  and other three wrong ones.
+def choices(capitals,state_keys,form,answer):
+    
+    
+    for i in range(len(state_keys)):
+        
+        correctAnswer = capitals[state_keys[i]]  #getting correctAnswer from capitals and using list of states as states[i] as a key inside it.
+        wrongAnswers = list(capitals.values())   #getting capital values
+        del wrongAnswers[wrongAnswers.index(correctAnswer)]   #deleting the correctAnswer from the wrongAnswer
+        r_choices = random.sample(wrongAnswers,3)      #getting remaining three choice exept the right answer
+       
+        answerOption=list(r_choices) + [correctAnswer]
+        print(answerOption)
+        random.shuffle(answerOption)
+        question(capitals,state_keys,form,answer,answerOption)
+
+def question(capitals,state_keys,form,answer,answerOption):
+    for i in range(len(state_keys)):
+        form.write('%s What is the capital of%s'%(i+1,state_keys[i]))
+        form.write('\n')
+        for j in range(4):
+            form.write('   %s. %s\n' %('ABCD'[j],answerOption[j]))
+
+        form.write('\n')
+        
+    
+capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
+'Arkansas': 'Little Rock', 'California': 'Sacramento', 'Colorado': 'Denver',
+'Connecticut': 'Hartford', 'Delaware': 'Dover', 'Florida': 'Tallahassee',
+'Georgia': 'Atlanta', 'Hawaii': 'Honolulu', 'Idaho': 'Boise', 'Illinois':
+'Springfield', 'Indiana': 'Indianapolis', 'Iowa': 'Des Moines', 'Kansas':
+'Topeka', 'Kentucky': 'Frankfort', 'Louisiana': 'Baton Rouge', 'Maine':
+'Augusta', 'Maryland': 'Annapolis', 'Massachusetts': 'Boston', 'Michigan':
+'Lansing', 'Minnesota': 'Saint Paul', 'Mississippi': 'Jackson', 'Missouri':
+'Jefferson City', 'Montana': 'Helena', 'Nebraska': 'Lincoln', 'Nevada':
+'Carson City', 'New Hampshire': 'Concord', 'New Jersey': 'Trenton', 'New'
+'Mexico': 'Santa Fe', 'New York': 'Albany', 'North Carolina': 'Raleigh',
+'North Dakota': 'Bismarck', 'Ohio': 'Columbus', 'Oklahoma': 'Oklahoma City',
+'Oregon': 'Salem', 'Pennsylvania': 'Harrisburg', 'Rhode Island': 'Providence',
+'South Carolina': 'Columbia', 'South Dakota': 'Pierre', 'Tennessee':
+'Nashville', 'Texas': 'Austin', 'Utah': 'Salt Lake City', 'Vermont':
+'Montpelier', 'Virginia': 'Richmond', 'Washington': 'Olympia', 'West'
+'Virginia': 'Charleston', 'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'}     
+
+results(capitals)
+        
+        
+
