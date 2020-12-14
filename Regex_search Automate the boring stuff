@@ -1,0 +1,27 @@
+import os
+import re 
+#regex search method if will find all the searches related to that regular expression
+def regex_search(pattern,textfile):
+    search = re.findall(pattern,textfile,re.I)
+    print(search)
+
+def dr():
+
+    while True:
+        path = input('Enter textfile directory:') #user gives the path 
+        os.chdir(path)
+        if os.path.exists(path):            #check if path exists otherwise ask again.
+            print('the path exists')
+            break
+    
+    user = input('Your Regex Expression:') #enter regular expression
+    print(os.listdir(path))
+    folder = os.listdir(path)
+    for file in folder:                 #loop through every single file
+        if file.endswith('.txt'):
+            directory = os.path.join(path,file)  #join the directory witth file 
+            textfile = open(directory,'r')    #open each file in read mode
+            msg = textfile.read()
+            regex_search(user,msg)      #call the method
+
+dr()
