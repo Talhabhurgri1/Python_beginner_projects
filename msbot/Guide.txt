@@ -1,0 +1,14 @@
+Step : 01 
+Enter your email and password
+
+Step : 02
+Channel name start and end time should be like this below...
+Only one space is required 
+
+channel channelname
+start time
+end time
+
+
+You are good to go 
+Thanks

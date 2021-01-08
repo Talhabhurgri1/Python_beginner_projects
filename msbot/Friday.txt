@@ -1,0 +1,6 @@
+channel1 demo
+start1 19:10
+end1 19:14
+channel2 demo2
+start2 12:50
+end2 12:55
